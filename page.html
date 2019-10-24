@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Page simple</title>
+        <script src="defi1.js"></script>
+    </head>
+    <body>
+        <h1>Blockchain Tools</h1>
+        <br>
+        <h2>Unit Converter</h2>
+        <input id="number" name="number>">
+        <select id="conversion" name="conversion">
+            <option value="" selected>Select a conversion</option>
+            <option value="convertHexaToDeci">Hexadecimal to decimal</option>
+            <option value="convertDeciToHexa">Decimal to hexadecimal</option>
+            <option value="convertHexaLittleEndianToHexa">Hexadecimal little endian to hexadecimal</option>
+            <option value="convertVarIntToDeci">VarInt to decimal</option>
+            <option value="convertBitsToTarget">Bits to Target</option>
+            <option value="convertTargetToDifficulty">Target to Difficulty</option>
+        </select>
+        <button id="convert">Convert</button>
+        <input id="convertedNumber" name="convertedNumber>">
+        <h2>Block displayer</h2>
+        <script type="text/javascript">
+            document.getElementById("convert").addEventListener('click', event => {
+                let converted = convertHexaToDeci("number")
+                document.getElementById("convertedNumber").innerHTML = converted
+            })
+        </script>
+    </body>
+</html>
