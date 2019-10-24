@@ -1,6 +1,6 @@
 //Fonction qui converti un hexadécimal -> décimal
 function convertHexaToDeci(string) {
-
+    test
 }
 
 //Fonction qui converti un décimal -> hexadécimal
