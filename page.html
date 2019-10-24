@@ -2,31 +2,62 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>Page simple</title>
+        <title>Blockchain Tools</title>
+        <link rel="stylesheet" href="style.css">
         <script src="defi1.js"></script>
     </head>
     <body>
-        <h1>Blockchain Tools</h1>
-        <br>
-        <h2>Unit Converter</h2>
-        <input id="number" name="number>">
-        <select id="conversion" name="conversion">
-            <option value="" selected>Select a conversion</option>
-            <option value="convertHexaToDeci">Hexadecimal to decimal</option>
-            <option value="convertDeciToHexa">Decimal to hexadecimal</option>
-            <option value="convertHexaLittleEndianToHexa">Hexadecimal little endian to hexadecimal</option>
-            <option value="convertVarIntToDeci">VarInt to decimal</option>
-            <option value="convertBitsToTarget">Bits to Target</option>
-            <option value="convertTargetToDifficulty">Target to Difficulty</option>
-        </select>
-        <button id="convert">Convert</button>
-        <input id="convertedNumber" name="convertedNumber>">
-        <h2>Block displayer</h2>
+        <section id="title">
+            <h1>Blockchain Tools</h1>
+        </section>
+        <section id="converter">
+            <h2>Unit Converter</h2>
+            <input id="inputValue" name="inputValue">
+            <select id="conversionFunction" name="conversionFunction">
+                <option value="" selected>Select a conversion</option>
+                <option value="convertHexaToDeci">Hexadecimal to decimal</option>
+                <option value="convertDeciToHexa">Decimal to hexadecimal</option>
+                <option value="convertHexaLittleEndianToHexa">Hexadecimal little endian to hexadecimal</option>
+                <option value="convertVarIntToDeci">VarInt to decimal</option>
+                <option value="convertBitsToTarget">Bits to Target</option>
+                <option value="convertTargetToDifficulty">Target to Difficulty</option>
+            </select>
+            <button id="convert" onclick="convert()">Convert</button>
+            <input id="convertedNumber" name="convertedNumber">
+        </section>
+        <section id="blockInfo">
+                <h2>Block displayer</h2>
+        </section>
+        
         <script type="text/javascript">
-            document.getElementById("convert").addEventListener('click', event => {
-                let converted = convertHexaToDeci("number")
-                document.getElementById("convertedNumber").innerHTML = converted
-            })
+            function convert() {
+                let inputValue = document.getElementById("inputValue").value
+                let selected = document.getElementById("conversionFunction").value
+                let convertedValue = ""
+                switch (selected) {
+                    case "convertHexaToDeci":
+                        convertedValue = convertHexaToDeci(inputValue)
+                    break;
+                    case "convertDeciToHexa":
+                        convertedValue = convertDeciToHexa(inputValue)
+                    break;
+                    case "convertHexaLittleEndianToHexa":
+                        convertedValue = convertHexaLittleEndianToHexa(inputValue)
+                    break;
+                    case "convertVarIntToDeci":
+                        convertedValue = convertVarIntToDeci(inputValue)
+                    break;
+                    case "convertBitsToTarget":
+                        convertedValue = convertBitsToTarget(inputValue)
+                    break;
+                    case "convertTargetToDifficulty":
+                        convertedValue = convertTargetToDifficulty(inputValue)
+                    break;
+                    default:
+                        convertedValue = "Select a conversion type"
+                }
+                document.getElementById("convertedNumber").value = convertedValue
+            }
         </script>
     </body>
 </html>
