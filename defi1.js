@@ -55,8 +55,14 @@ function convertVarIntToDeci(varInt) {
     }
 }
 
-//Fonction qui converti un Bits -> Cible
-function convertBitsToTarget(number) {
+//Fonction qui converti un décimal -> varInt
+function convertDeciToVarInt(number) {
+    if (number < 0xfd)
+        return number.toString(16);
+    
+    let prefix;
+    let hexaString = convertDeciToHexa(number);
+    hexaString = _normHexaString(hexaString);
 
     if (number < 0x10000) {
         hexaString = hexaString.padStart(4, "0");
