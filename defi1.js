@@ -15,24 +15,24 @@ function convertHexaLittleEndianToHexa(string) {
 
 //Fonction qui converti un varInt -> décimal
 function convertVarIntToDeci(varInt) {
-    let prefix = varInt.substring(0,2)
+    let prefix = varInt.substring(0,4)
     let tempDeci = ""
     let width = 0
-    if (prefix == "fd") {
-        tempDeci = varInt.substring(2)
+    if (prefix == "0xfd") {
+        tempDeci = varInt.substring(4)
         width = 4
-    } else if (prefix == "fe") {
-        tempDeci = varInt.substring(2)
+    } else if (prefix == "0xfe") {
+        tempDeci = varInt.substring(4)
         width = 8
-    } else if (prefix == "ff") {
-        tempDeci = varInt.substring(2)
+    } else if (prefix == "0xff") {
+        tempDeci = varInt.substring(4)
         width = 16
     } else {
-        tempDeci = varInt
+        tempDeci = varInt.substring(2)
         width = 2
     }
     //controling input size
-    if (tempDeci.length != width) {
+    if (tempDeci.length != width || varInt.substring(0,2) != "0x") {
         return "Please insert a varInt"
     } else {
         deci = parseInt(varInt, 16).toString()
