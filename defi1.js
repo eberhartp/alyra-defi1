@@ -40,12 +40,12 @@ function convertVarIntToDeci(varInt) {
     }
 }
 
-//Fonction qui converti un varInt -> décimal
+//Fonction qui converti un Bits -> Cible
 function convertBitsToTarget(number) {
 
 }
 
-//Fonction qui converti un varInt -> décimal
+//Fonction qui converti une Cible -> Difficulté
 function convertTargetToDifficulty(number) {
 
 }
