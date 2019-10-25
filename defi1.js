@@ -29,30 +29,34 @@ function convertHexaLittleEndianToHexa(string) {
 }
 
 //Fonction qui converti un varInt -> décimal
-function convertVarIntToDeci(string) {
-    let normString = _normHexaString(string);
-    let prefix = parseInt(normString.slice(0,2), 16);
-    let numberString = normString.slice(2);
-
-    if (prefix < 0xfd)
-        return prefix;
-    
-    if ((prefix == 0xfd && numberString.length != 4) ||
-        (prefix == 0xfe && numberString.length != 8) ||
-        (prefix == 0xff && numberString.length != 16))
-        return "Format de base non valide";
-
-    return parseInt(convertHexaLittleEndianToHexa(numberString), 16);
+function convertVarIntToDeci(varInt) {
+    let prefix = varInt.substring(0,2)
+    let tempDeci = ""
+    let width = 0
+    if (prefix == "fd") {
+        tempDeci = varInt.substring(2)
+        width = 4
+    } else if (prefix == "fe") {
+        tempDeci = varInt.substring(2)
+        width = 8
+    } else if (prefix == "ff") {
+        tempDeci = varInt.substring(2)
+        width = 16
+    } else {
+        tempDeci = varInt
+        width = 2
+    }
+    //controling input size
+    if (tempDeci.length != width) {
+        return "Please insert a varInt"
+    } else {
+        deci = parseInt(varInt, 16).toString()
+        return deci
+    }
 }
 
-//Fonction qui converti un décimal -> varInt
-function convertDeciToVarInt(number) {
-    if (number < 0xfd)
-        return number.toString(16);
-    
-    let prefix;
-    let hexaString = convertDeciToHexa(number);
-    hexaString = _normHexaString(hexaString);
+//Fonction qui converti un Bits -> Cible
+function convertBitsToTarget(number) {
 
     if (number < 0x10000) {
         hexaString = hexaString.padStart(4, "0");
