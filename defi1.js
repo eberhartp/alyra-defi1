@@ -50,7 +50,8 @@ function convertVarIntToDeci(varInt) {
     if (tempDeci.length != width || varInt.substring(0,2) != "0x") {
         return "Please insert a varInt"
     } else {
-        deci = parseInt(varInt, 16).toString()
+        deci = convertHexaLittleEndianToHexa(tempDeci)
+        deci = parseInt(deci, 16).toString()
         return deci
     }
 }
