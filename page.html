@@ -19,8 +19,10 @@
                 <option value="convertDeciToHexa">Decimal to hexadecimal</option>
                 <option value="convertHexaLittleEndianToHexa">Hexadecimal little endian to hexadecimal</option>
                 <option value="convertVarIntToDeci">VarInt to decimal</option>
+                <option value="convertDeciToVarInt">Decimal to varInt</option>
                 <option value="convertBitsToTarget">Bits to Target</option>
                 <option value="convertTargetToDifficulty">Target to Difficulty</option>
+                <option value="convertTargetToPDifficulty">Target to Difficulty (pool)</option>
             </select>
             <button id="convert" onclick="convert()">Convert</button>
             <input id="convertedNumber" name="convertedNumber">
@@ -47,11 +49,17 @@
                     case "convertVarIntToDeci":
                         convertedValue = convertVarIntToDeci(inputValue)
                     break;
+                    case "convertDeciToVarInt":
+                        convertedValue = convertDeciToVarInt(inputValue)
+                    break;
                     case "convertBitsToTarget":
                         convertedValue = convertBitsToTarget(inputValue)
                     break;
                     case "convertTargetToDifficulty":
                         convertedValue = convertTargetToDifficulty(inputValue)
+                    break;
+                    case "convertTargetToPDifficulty":
+                        convertedValue = convertTargetToPDifficulty(inputValue)
                     break;
                     default:
                         convertedValue = "Select a conversion type"
