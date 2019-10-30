@@ -30,7 +30,10 @@
             <input id="convertedNumber" name="convertedNumber">
         </section>
         <section id="blockInfo">
-                <h2>Block displayer</h2>
+            <h2>Block displayer</h2>
+            <input id="file" type="file">
+            <button id="read" onclick="readJson()">Read Json file</button>
+            <div id="blockDetails"></div>
         </section>
         
         <script type="text/javascript">
@@ -69,6 +72,42 @@
                 document.getElementById("convertedNumber").value = convertedValue
                 return false
             }
+
+            // Check for the various File API support.
+            function readJson(){
+                if (window.File && window.FileReader && window.FileList) {
+                    // Great success! All the File APIs are supported.
+                    console.log("File APIs Supported")
+                } else {
+                    alert('The File APIs are not fully supported in this browser.');
+                }
+            }
+
+            //Parse uploaded file as a text
+            let fileInput = document.querySelector('#file');
+            fileInput.addEventListener('change', function() {
+                let reader = new FileReader();
+                reader.addEventListener('load', function() {
+                    let infos = reader.result
+                    console.log(typeof(infos))
+                    console.log(infos)
+                    let obj = JSON.parse(infos)
+                    //let obj2 = JSON.stringify(infos,null,4)
+                    //obj2 = JSON.stringify(obj,null,4)
+                    let objInfos = ""
+                    $.each(obj, function(i){
+                        if (typeof(i) == "string") {
+                            objInfos += (i + ": " + obj[i].toString() + "<br/>");
+                        } else {
+                            $.each(i, function(j){
+                                objInfos += (j + ": " + obj[j].toString() + "<br/>");
+                            })
+                        }  
+                    });
+                    document.getElementById("blockDetails").innerHTML = objInfos
+                });
+                reader.readAsText(fileInput.files[0], 'UTF-8');
+            });
         </script>
     </body>
 </html>
