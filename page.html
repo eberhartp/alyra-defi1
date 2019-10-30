@@ -12,19 +12,21 @@
         </section>
         <section id="converter">
             <h2>Unit converter</h2>
-            <input id="inputValue" name="inputValue">
-            <select id="conversionFunction" name="conversionFunction">
-                <option value="" selected>Select a conversion</option>
-                <option value="convertHexaToDeci">Hexadecimal to decimal</option>
-                <option value="convertDeciToHexa">Decimal to hexadecimal</option>
-                <option value="convertHexaLittleEndianToHexa">Hexadecimal little endian to hexadecimal</option>
-                <option value="convertVarIntToDeci">VarInt to decimal</option>
-                <option value="convertDeciToVarInt">Decimal to varInt</option>
-                <option value="convertBitsToTarget">Bits to Target</option>
-                <option value="convertTargetToDifficulty">Target to Difficulty</option>
-                <option value="convertTargetToPDifficulty">Target to Difficulty (pool)</option>
-            </select>
-            <button id="convert" onclick="convert()">Convert</button>
+            <form id="convertform" onsubmit="return convert()">
+                <input id="inputValue" name="inputValue">
+                <select id="conversionFunction" name="conversionFunction">
+                    <option value="" selected>Select a conversion</option>
+                    <option value="convertHexaToDeci">Hexadecimal to decimal</option>
+                    <option value="convertDeciToHexa">Decimal to hexadecimal</option>
+                    <option value="convertHexaLittleEndianToHexa">Hexadecimal little endian to hexadecimal</option>
+                    <option value="convertVarIntToDeci">VarInt to decimal</option>
+                    <option value="convertDeciToVarInt">Decimal to varInt</option>
+                    <option value="convertBitsToTarget">Bits to Target</option>
+                    <option value="convertTargetToDifficulty">Target to Difficulty</option>
+                    <option value="convertTargetToPDifficulty">Target to Difficulty (pool)</option>
+                </select>
+                <input type="submit" value="Convert"/>
+            </form>
             <input id="convertedNumber" name="convertedNumber">
         </section>
         <section id="blockInfo">
@@ -65,6 +67,7 @@
                         convertedValue = "Select a conversion type"
                 }
                 document.getElementById("convertedNumber").value = convertedValue
+                return false
             }
         </script>
     </body>

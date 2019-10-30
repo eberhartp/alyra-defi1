@@ -19,6 +19,10 @@ h1{
     font-size: xx-large;
 }
 
+#convertform{
+    display: inline;
+}
+
 #converter{
     width: 100%;
     height: 20%;
