@@ -79,7 +79,13 @@
                 document.getElementById("blockDetails").style.display = "block"
                 let reader = new FileReader();
                 reader.onload = function (event) {
-                    fileOutput = JSON.parse(event.target.result)
+                    if (event.target.result.trim()[0] === "{") {
+                        fileOutput = JSON.parse(event.target.result)
+                    } else {
+                        let hexaParser = new BitcoinHexaParser(event.target.result);
+                        fileOutput = hexaParser.parseBlock();
+                    }
+                    
                     document.getElementById("blockDetails").innerHTML = JSON.stringify(fileOutput, null, 2)
                 }
                 reader.readAsText(fileInput.files[0], 'UTF-8');
