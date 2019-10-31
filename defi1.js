@@ -8,8 +8,9 @@ function _normHexaString(hexaString) {
 }
 
 //Fonction qui converti un hexadécimal -> décimal
-function convertHexaToDeci(string) {
-    
+function convertHexaToDeci(hexa) {
+    let decimal = parseInt(hexa, 16);
+    return decimal
 }
 
 //Fonction qui converti un décimal -> hexadécimal
