@@ -32,6 +32,8 @@
         <section id="blockInfo">
             <h2>Block displayer</h2>
             <input id="file" type="file">
+            <button id="getBlock" onclick="ajaxGetBlock">Query remote block</button>
+            <input id="inputBlock" name="inputBlock">
             <textarea id="blockDetails"></textarea>
         </section>
         
@@ -90,6 +92,20 @@
                 }
                 reader.readAsText(fileInput.files[0], 'UTF-8');
             });
+
+            // AJAX query to server
+            function ajaxGetBlock() {
+                let hash = document.getElementById("inputBlock").value;
+                xhr = new XMLHttpRequest();
+                xhr.open("GET", `getBlock/${hash}`, true);
+                xhr.onreadystatechange(function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                        document.getElementById("blockDetails").style.display = "block";
+                        let response = JSON.parse(this.responseText);
+                        document.getElementById("blockDetails").innerHTML = JSON.stringify(response, null, 2);
+                    }
+                });
+            }
         </script>
     </body>
 </html>
