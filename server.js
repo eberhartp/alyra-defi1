@@ -2,8 +2,6 @@ const querystring = require("querystring");
 const http = require("http");
 const url = require("url");
 const fs = require("fs");
-const express = require("express")
-const app = express();
 const Client = require('bitcoin-core');
 const client = new Client({ 
   network: 'regtest', 
